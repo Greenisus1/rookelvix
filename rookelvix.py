@@ -48,11 +48,11 @@ def run(stdscr,seed):
    try:g.push(buf);reply=g.ai();message='Black: '+reply if reply else g.outcome()
    except ValueError as e:message=str(e)
    buf=''
-  elif 32<=k<127 and len(buf)<8:buf+=chr(k)
+  elif 32<=k<127 and chr(k).lower() in 'abcdefgh12345678qrbn' and len(buf)<5:buf+=chr(k)
 def main():
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--seed',type=int);p.add_argument('--demo',action='store_true');a=p.parse_args()
  if a.demo:print('ROOKELVIX\n'+str(Game(a.seed).board));return
  try:curses.wrapper(run,a.seed)
- except curses.error:print('Needs an interactive curses terminal (68x18 minimum).')
+ except curses.error:print('Needs an interactive curses terminal (68x18 minimum).');return 2
  except KeyboardInterrupt:pass
-if __name__=='__main__':main()
+if __name__=='__main__':raise SystemExit(main())
