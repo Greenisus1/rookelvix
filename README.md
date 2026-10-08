@@ -1,6 +1,6 @@
 # Rookelvix
 
-Offline terminal chess against a simple opponent. Version 1.0.0. Original terminal artwork; no account, desktop or telemetry. No assets or names taken from other games.
+Offline terminal chess against a simple opponent. Version 1.0.1. Original terminal artwork; no account, desktop or telemetry. No assets or names taken from other games.
 
 ## Install and run
 
@@ -20,3 +20,5 @@ For tests:
     .venv/bin/python -m unittest -v
 
 10 core tests plus actual Linux PTY visual/input smoke. Linux tested; physical Raspberry Pi and non-Linux untested. Without curses the interactive game is unavailable. No paid features. games category marker line3; older stores still list/launch it. GPL3-or-later; see LICENSE.txt. Dependency sources: https://pypi.org/project/chess/ and https://python-chess.readthedocs.io/en/latest/ .
+
+1.0.1: terminal initialization failure returns error status rather than false success. Move input limited to coordinate/promotion characters and five characters; invalid input still checked by legal-move library. Core game rules unchanged.
