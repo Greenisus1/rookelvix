@@ -22,3 +22,5 @@ For tests:
 10 core tests plus actual Linux PTY visual/input smoke. Linux tested; physical Raspberry Pi and non-Linux untested. Without curses the interactive game is unavailable. No paid features. games category marker line3; older stores still list/launch it. GPL3-or-later; see LICENSE.txt. Dependency sources: https://pypi.org/project/chess/ and https://python-chess.readthedocs.io/en/latest/ .
 
 1.0.1: terminal initialization failure returns error status rather than false success. Move input limited to coordinate/promotion characters and five characters; invalid input still checked by legal-move library. Core game rules unchanged.
+
+Fullscreen update: Store interactive launch uses terminal-sized board cells or wrapped full-terminal utility input/results with PgUp/PgDn scrolling. Original core rules and direct CLI commands remain unchanged. Ctrl+C cancels utility entry, result Enter returns; no new dependency downloads. Linux PTY resize/restoration checked; physical Pi untested.
