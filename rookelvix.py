@@ -34,11 +34,15 @@ def run(stdscr,seed):
   h,w=stdscr.getmaxyx()
   if h<18 or w<68:text(stdscr,4,2,'Resize to 68x18. Position retained.',3)
   else:
+   cw=max(4,(w-8)//8);rh=max(1,(h-9)//8);left=(w-cw*8)//2
    for rank in range(7,-1,-1):
-    text(stdscr,4+7-rank,3,rank+1,1)
+    row=7-rank;text(stdscr,4+row*rh,left-2,str(rank+1),1)
     for f in range(8):
-     piece=g.board.piece_at(chess.square(f,rank));text(stdscr,4+7-rank,6+f*4,' '+(piece.symbol() if piece else '.')+' ',4 if piece and piece.color else 2,True)
-   text(stdscr,12,6,' a   b   c   d   e   f   g   h',1);text(stdscr,14,2,'Move: '+buf,1);text(stdscr,15,2,message)
+     piece=g.board.piece_at(chess.square(f,rank))
+     for dy in range(rh):text(stdscr,4+row*rh+dy,left+f*cw,('░' if (rank+f)%2 else ' ')*cw,2)
+     text(stdscr,4+row*rh+rh//2,left+f*cw+cw//2,piece.symbol() if piece else '.',4 if piece and piece.color else 2,True)
+   for f in range(8):text(stdscr,4+8*rh,left+f*cw+cw//2,'abcdefgh'[f],1)
+   text(stdscr,h-4,2,'Move: '+buf,1);text(stdscr,h-3,2,message)
   stdscr.refresh();k=stdscr.getch()
   if k==ord('q') and not buf:return
   if k==ord('r') and not buf:g=Game(seed);message='New game.';continue
